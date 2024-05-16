@@ -1,0 +1,47 @@
+﻿@model Tarea_4.Models.CalculosInformacion
+
+@{
+    ViewBag.Title = "Factura";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/tablaFactura.css" />
+</head>
+<body>
+    <table class="table-facturas">
+        <thead>
+            <tr>
+                <th colspan="6"><h4>FACTURA DE PAGO</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Cedula)</th>
+                <td>@Html.DisplayFor(model => model.Cedula)</td>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <td>@Html.DisplayFor(model => model.Nombre)</td>
+                <th>@Html.DisplayNameFor(model => model.Apellido)</th>
+                <td>@Html.DisplayFor(model => model.Apellido)</td>
+            <tr>
+                <th colspan="3">valor a pagar por energia</th>
+                <td colspan="3">@Html.DisplayFor(model => model.Energia)</td>
+            </tr>
+            <tr>
+                <th colspan="3">valor a pagar por agua</th>
+                <td colspan="3">@Html.DisplayFor(model => model.Agua)</td>
+            </tr>
+            <tr>
+                <th colspan="3">valor total a pagar</th>
+                <td colspan="3">@Html.DisplayFor(model => model.Total)</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <div class="buttons">
+        @using (Html.BeginForm("Index", "Clientes", FormMethod.Post))
+        {
+            <button id="miBotonEli" class="btn btn-info btn-md">Regresar</button>
+        }
+    </div>
+</body>

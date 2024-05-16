@@ -1,0 +1,56 @@
+﻿@model Tarea_4.Consumo_Energia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de eliminar?</h3>
+<div>
+    <h4>Consumo_Energia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Periodo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Periodo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaAhorroEnergia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetaAhorroEnergia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoActualEnergia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoActualEnergia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

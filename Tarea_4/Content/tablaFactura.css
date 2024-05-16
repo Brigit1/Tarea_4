@@ -1,0 +1,15 @@
+﻿.table-facturas {
+    border-collapse: collapse; /* Para eliminar espacios entre celdas */
+    width: 100%; /* Ajusta el ancho de la tabla */
+}
+
+    .table-facturas th, .table-facturas td {
+        border: 1px solid black; /* Bordes negros para celdas */
+        padding: 8px; /* Espacio interno para celdas */
+    }
+
+    .table-facturas th {
+        text-align: center; /* Centrar el texto */
+        background-color: #8cbcf1; /* Color de fondo azul */
+        color: black; /* Color del texto */
+    }

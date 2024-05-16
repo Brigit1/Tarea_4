@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Tarea_4.Cliente>
+
+@{
+    ViewBag.Title = "Monitor";
+}
+
+<h2>Monitor</h2>
+
+<p>
+    <button onclick="window.location.href='@Url.Action("Create", "Clientes")'" class="btn btn-primary">Crear Nuevo Cliente</button>
+
+    <button onclick="window.location.href='@Url.Action("Create", "Consumo_Agua")'" class="btn btn-primary">Crear Factura de Agua</button>
+
+    <button onclick="window.location.href='@Url.Action("Create", "Consumo_Energia")'" class="btn btn-primary">Crear Factura de Energía</button>
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estrato)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Celular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estrato)
+        </td>
+        
+        <td>
+            <select id="mesSeleccionado_@item.IdCliente" onchange="actualizarMesSeleccionado(@item.IdCliente)">
+                <option value="">Seleccionar</option>
+                @foreach (var mes in MvcApplication.Meses)
+                {
+                    <option value="@mes.Key">@mes.Value</option>
+                }
+            </select>
+          
+            <div class="buttons">
+                @using (Html.BeginForm("Factura", "Clientes", FormMethod.Get))
+                {
+                    <input type="hidden" name="id" value="@item.IdCliente" />
+                    <input type="hidden" name="mes" value="0" id="mesSeleccionadoHidden_@item.IdCliente" />
+                    <button id="factura" class="btn btn-info btn-md">Factura</button>
+                }
+            </div>
+        </td>
+        <td>
+            @Html.ActionLink("Detalle", "Details", new { id = item.IdCliente }) |
+            @Html.ActionLink("Editar", "Edit", new { id = item.IdCliente }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCliente })
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+    function actualizarMesSeleccionado(obj) {
+        // Obtener el valor del mes seleccionado
+        console.log(obj);
+        var mesSeleccionado = document.getElementById("mesSeleccionado_"+obj).value;
+        document.getElementById("mesSeleccionadoHidden_"+obj).value = mesSeleccionado;
+
+    }
+</script>

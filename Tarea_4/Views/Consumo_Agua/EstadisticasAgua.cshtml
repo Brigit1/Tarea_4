@@ -1,0 +1,96 @@
+﻿@using Tarea_4.Models
+
+@model  EstadisticasAgua
+@{
+    ViewBag.Title = "EstadisticasAgua";
+}
+
+<main>
+
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h2 id="title">ESTADISTICAS DE AGUA</h2>
+        <p class="lead"></p>
+        <div class="buttons">
+            @using (Html.BeginForm("Index", "Clientes", FormMethod.Post))
+            {
+
+                <button id="miBoton1" class="btn btn-primary btn-md"> Regresar </button>
+            }
+        </div>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Total de exceso de agua</h2>
+            @if (@Model.TotalDeExcesosDeAgua > 0)
+            {
+                <p>El exceso total de agua por encima de promedio es de @Model.TotalDeExcesosDeAgua Mt^3</p>
+
+            }
+            else
+            {
+                <p>No hay gasto excesivo de agua</p>
+
+            }
+        </section> <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+    <h2 id="gettingStartedTitle">Exceso de agua por estrato</h2>
+            @if (Model.ExcesoDeAguaPorEstrato.Any())
+            {
+                foreach (var item in Model.ExcesoDeAguaPorEstrato)
+                {
+                    <p>En el estrato @item.Estrato : el @item.Porcentaje % de los clientes tiene un consumo excesivo de agua.</p>
+
+                }
+            }
+            else
+            {
+                <p>No hay clientes con exceso de agua </p>
+
+            }
+
+
+
+
+
+</section>
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <h2 id="librariesTitle">Consumo de agua mayor al promedio</h2>
+            @if (Model.ConsumoAguaMayorPromedio.Any())
+            {
+                foreach (var item in Model.ConsumoAguaMayorPromedio)
+                {
+                    <p>El cliente @item.Nombre  @item.Apellido con cedula @item.Cedula tiene un exceso de agua de @item.ExcesoA Mt^3</p>
+
+                }
+            }
+            else
+            {
+                <p>No hay clientes con exceso de agua mayor al promedio</p>
+
+            }
+
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">Estrato con el mayor ahorro de agua</h2>
+            @if (@Model.EstratoMayorAhorroAgua > 0)
+            {
+                <p>
+                    El estrato con mayor ahorro de agua es de @Model.EstratoMayorAhorroAgua
+                </p>
+            }
+            else
+            {
+                <p>No hay consumo de agua</p>
+
+            }
+
+        </section>
+    </div>
+</main>
+
+
+
+

@@ -1,0 +1,87 @@
+﻿@using Tarea_4.Models
+
+@model  EstadisticasEnergia
+@{
+    ViewBag.Title = "EstadisticasEnergia";
+}
+
+<main>
+
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h2 id="title">ESTADISTICAS DE ENERGIA</h2>
+        <p class="lead"></p>
+        <div class="buttons">
+            @using (Html.BeginForm("Index", "Clientes", FormMethod.Post))
+            {
+
+                <button id="miBoton1" class="btn btn-primary btn-md"> Regresar </button>
+            }
+        </div>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">Promedio energia</h2>
+            @if (Model.PromedioEnergia>0)
+            {
+                <p>
+                    El promedio Actual del consumo de energia es de  @Model.PromedioEnergia Kv
+                </p>
+            }
+            else
+            {
+                <p>No hay clientes con consumo de energia</p>
+            }
+            
+        </section>
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <h2 id="librariesTitle">Valor Total de descuento de energia</h2>
+            @if (@Model.ValorTotalDescuento > 0)
+            {
+                <p>El descuento total por el concepto del descuento en el insentivo de energia es de @Model.ValorTotalDescuento</p>
+            }
+            else
+            {
+                <p>No hay descuento por gasto excesivo</p>
+            }
+
+        </section>
+        <section class="col-md-4" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Mayor desface En el consumo de energia</h2>
+
+            @foreach (var item in Model.MayorDesfaceE)
+            {
+                if (@item.Nombre != "")
+                {
+                    <p>El cliente @item.Nombre  @item.Apellido con cedula @item.Cedula tiene el mayor desface de consumo de energia frente a la meta de ahorro con una diferencia de @item.MayorD Kv</p>
+                }
+                else
+                {
+                    <p>No hay clientes con consumo de energia</p>
+
+                    }
+                }
+        </section>
+
+    </div>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <h2 id="librariesTitle">Mayor y menor consumo de energia</h2>
+
+            @foreach (var item in Model.MayorYMenorConsumoE)
+            {
+                if (@item.EstratoMayorConsumo > 0 && @item.EstratoMenorConsumo > 0)
+                {
+                    <p>El estrato con el mayor consumo energetico es el @item.EstratoMayorConsumo</p>
+                    <p>El estrato con el menor consumo energetico es el @item.EstratoMenorConsumo</p>
+                }
+                else
+                {
+                    <p>No hay gasto excesivo de energeticos</p>
+                }
+
+            }
+        </section>
+    </div>
+</main>

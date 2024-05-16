@@ -1,0 +1,64 @@
+﻿@model Tarea_4.Consumo_Agua
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear Nueva Factura</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Consumo Agua</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdCliente, "Clientes", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdCliente", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Periodo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Periodo, new SelectList(MvcApplication.Meses, "Key", "Value"), "Selecciona un período", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Periodo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PromedioConsumoAgua, "Consumo Promedio de Agua", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PromedioConsumoAgua, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PromedioConsumoAgua, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConsumoActualAgua,"Consumo Actual de Agua", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ConsumoActualAgua, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConsumoActualAgua, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-outline-primary" />
+        </div>
+    </div>
+</div>
+}
+<br>
+<div>
+    @Html.ActionLink("Regresar", "../Clientes/Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

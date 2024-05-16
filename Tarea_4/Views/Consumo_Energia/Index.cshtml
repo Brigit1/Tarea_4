@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Tarea_4.Consumo_Energia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Facturas Energia</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Periodo
+        </th>
+        <th>
+            Meta Ahorro Energia
+        </th>
+        <th>
+            Consumo Actual Energia
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Periodo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetaAhorroEnergia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumoActualEnergia)
+        </td>
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id, idCliente = item.IdCliente }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id, idCliente = item.IdCliente })
+        </td>
+    </tr>
+}
+
+</table>

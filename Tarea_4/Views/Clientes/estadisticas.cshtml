@@ -1,0 +1,32 @@
+﻿@using Tarea_4.Models
+
+@model  EstadisticasGenerales
+
+@{
+    ViewBag.Title = "estadisticas";
+}
+
+
+<main>
+
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h2 id="title">ESTADISTICAS GENERALES </h2>
+        <p class="lead"></p>
+        <div class="buttons">
+            @using (Html.BeginForm("guardarFormulario", "Home", FormMethod.Post))
+            {
+
+                <button id="miBoton1" class="btn btn-primary btn-md"> Regresar </button>
+            }
+        </div>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Total de pago a la empresa</h2>
+            <p>El valor total que pagan todos lo clientes a la empresa de Energia y agua es de  $@Model.TotalPagarEmpresa</p>
+        </section>
+    </div>
+</main>
+
+
